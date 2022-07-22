@@ -1,12 +1,7 @@
 ﻿using OrderBook.DBRealization;
 using OrderBook.Models;
 using OrderBook.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderBook.Commands
 {
@@ -35,10 +30,11 @@ namespace OrderBook.Commands
 
         public override void Execute(object? parameter)
         {
+            Order order = new Order { Name = "test" };
             using (DataContext db = new DataContext())
             {
-                Order order = new Order();
-                db.Orders.Add(order);
+                var orders = db.Orders;
+                orders.Add(order);
                 _orderViewModel.Orders.Add(order);
                 db.SaveChanges();
             }

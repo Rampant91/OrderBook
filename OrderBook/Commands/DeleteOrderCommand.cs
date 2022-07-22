@@ -35,16 +35,14 @@ namespace OrderBook.Commands
 
         public override void Execute(object? parameter)
         {
-            Order order = _orderViewModel.SelectedOrder;
+            //Order order = _orderViewModel.SelectedOrder;
             using (DataContext db = new DataContext())
             {
-                var orderDb = db.Orders.FirstOrDefault(x=> x.Id == order.Id);
-                if (orderDb != null)
-                {
-                    db.Orders.Remove(orderDb);
-                    _orderViewModel.Orders.Remove(order);
-                    db.SaveChanges();
-                }
+                Order order = new() { Name = "test" };
+                db.Orders.Add(order);
+                _orderViewModel.SelectedOrder = order;
+                db.SaveChanges();
+                _orderViewModel.Orders.Add(order);
             }
         }
     }

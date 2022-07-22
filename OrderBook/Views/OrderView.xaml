@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <ListBox ItemsSource="{Binding Path=Orders, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedOrder}">
+                <ListBox ItemsSource="{Binding Path=Orders, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedOrder, UpdateSourceTrigger=PropertyChanged}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBox IsEnabled="False" Text="{Binding Path=Name}"/>
