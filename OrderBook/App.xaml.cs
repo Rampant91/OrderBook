@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderBook.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,13 @@ namespace OrderBook
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs startupEventArgs)
+        {
+            MainWindow = new MainWindow()
+            {
+                DataContext = new OrderViewModel()
+            };
+            MainWindow.Show();
+        }
     }
 }

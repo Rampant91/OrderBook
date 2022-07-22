@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="OrderBook.Views.OrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OrderBook.Views" xmlns:viewmodels="clr-namespace:OrderBook.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:OrderViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="3*" MinWidth="3"/>
+            <ColumnDefinition Width="547*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <ListBox ItemsSource="{Binding Path=Orders, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedOrder}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBox IsEnabled="False" Text="{Binding Path=Name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid Grid.Row="1" >
+                <StackPanel Orientation="Horizontal">
+                    <Button Command="{Binding AddOrder}" Content="Добавить" Height="50" Width="60" VerticalAlignment="Bottom"  Margin="20,10,0,10"/>
+                    <Button Content="Изменить" Height="50" Width="60" VerticalAlignment="Bottom"  Margin="20,10,0,10"/>
+                    <Button Command="{Binding DeleteOrder}" CommandParameter="{Binding SelectedOrder}" Content="Удалить" Height="50" Width="60" VerticalAlignment="Bottom"  Margin="20,10,0,10"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" DataContext="{Binding SelectedOrder, UpdateSourceTrigger=PropertyChanged}">
+                <TextBlock Text="Наименование" Height="20"/>
+                <TextBox IsEnabled="False" Height="20" Text="{Binding Path=Name}"/>
+                <TextBlock Text="Цена" Height="20"/>
+                <TextBox IsEnabled="False" Height="20" Text="{Binding Path=Price}"/>
+                <TextBlock Text="Количество" Height="20"/>
+                <TextBox IsEnabled="False" Height="20" Text="{Binding Path=Amount}"/>
+                <TextBlock Text="Дата" Height="20"/>
+                <TextBox IsEnabled="False" Height="20" Text="{Binding Path=Date}"/>
+                <TextBlock Text="Описание" Height="20"/>
+                <TextBox IsEnabled="False" Height="20" Text="{Binding Path=Discription}"/>
+            </StackPanel>
+            <Button Grid.Row="1" Content="Сохранить" Height="50" Margin="10"/>
+        </Grid>
+    </Grid>
+</UserControl>
