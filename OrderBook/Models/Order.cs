@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrderBook.Models
 {
@@ -6,6 +7,8 @@ namespace OrderBook.Models
     {
         [Key]
         public int Id { get; set; }
+        [NotMapped]
+        public bool Enabled { get; set; } = false;
 
         public string? Name { get; set; }
 

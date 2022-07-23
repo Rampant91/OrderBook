@@ -30,7 +30,7 @@ namespace OrderBook.Commands
 
         public override void Execute(object? parameter)
         {
-            Order order = new Order { Name = "test" };
+            Order order = new Order();
             using (DataContext db = new DataContext())
             {
                 var orders = db.Orders;
